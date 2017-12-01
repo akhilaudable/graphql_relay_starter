@@ -24,6 +24,7 @@ function startAppServer(callback) {
   // Serve static resources
   appServer.use('/', express.static(path.resolve(__dirname, 'public')));
   appServer.listen(APP_PORT, () => {
+    
     console.log(`App is now running on http://localhost:${APP_PORT}`);
     if (callback) {
       callback();
