@@ -11,22 +11,25 @@ let graphQLServer;
 let appServer;
 
 function startAppServer() {
+
+  // setup webpack-dev-server
 const compiler = webpack(webpackConfig);
   const devServerOptions = Object.assign({}, webpackConfig.devServer, {
   stats: {
     colors: true
   }
 });
-const server = new WebpackDevServer(compiler, devServerOptions);
 
-server.listen(APP_PORT, '127.0.0.1', () => {
+ appServer = new WebpackDevServer(compiler, devServerOptions);
+
+appServer.listen(APP_PORT, '127.0.0.1', () => {
   console.log(`App is running on http://localhost:${APP_PORT}`);
 });
 
 }
 
 function startServers(callback) {
-  // Shut down the servers
+  // Shut down the appServers
   if (appServer) {
     appServer.listeningApp.close();
   }
