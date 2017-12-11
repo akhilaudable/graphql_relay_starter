@@ -17,10 +17,14 @@ const compiler = webpack(webpackConfig);
   const devServerOptions = Object.assign({}, webpackConfig.devServer, {
   stats: {
     colors: true
-  }
+  },
+  contentBase: '/public/',
+  proxy: {'/graphql': `http://localhost:${GRAPHQL_PORT}`},
+  publicPath: '/js/',
 });
 
  appServer = new WebpackDevServer(compiler, devServerOptions);
+appServer.use('/', express.static(path.resolve(__dirname, 'public')));
 
 appServer.listen(APP_PORT, '127.0.0.1', () => {
   console.log(`App is running on http://localhost:${APP_PORT}`);
