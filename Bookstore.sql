@@ -9,8 +9,8 @@ CREATE TABLE `Books` (
 CREATE TABLE `Orders`(
 	`order_id` int(11) NOT NULL AUTO_INCREMENT,
     `book_id` int(11) DEFAULT NULL,
-	`feedback` varchar(300) DEFAULT NULL,
-     `stock` varchar(30) DEFAULT NULL,
+	`quantity` int(11) DEFAULT NULL,
+     `cart` varchar(30) DEFAULT NULL,
     PRIMARY KEY (`order_id`),
     CONSTRAINT `FK_book_id` FOREIGN KEY (`book_id`) REFERENCES `Books`(`id`)
 )ENGINE = INNODB DEFAULT CHARSET=utf8;
